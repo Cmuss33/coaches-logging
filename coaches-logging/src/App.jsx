@@ -7,13 +7,39 @@ function App() {
   const [hours, setHours] = useState("");
 
 
-  const handleLog = () => {
-    // call backend
+  const handleLog = async () => {
+  if (!coachName || !session || !hours) {
+    alert("Please fill all fields");
+    return;
+  }
 
+  const formData = new FormData();
+  formData.append("coach", coachName);
+  formData.append("session", session);
+  formData.append("hours", hours);
+
+  try {
+    const res = await fetch(
+      "https://script.google.com/macros/s/AKfycbxcYrxEpPmQiz_U2Fvthkf582kdv6LazTQN0pVp9PuVmEjl53uoEGW9_Ent1zsZhDEjcA/exec",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
+
+    const data = await res.text(); // Apps Script returns plain text
+    console.log(data);
+
+    alert("Hours logged successfully!");
     setCoachName("");
     setSession("");
     setHours("");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to log hours");
   }
+};
+
 
   return (
     <>
