@@ -1,17 +1,24 @@
 import { useState } from 'react'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './App.css'
 
 function App() {
   const [coachName, setCoachName] = useState("");
   const [session, setSession] = useState("");
   const [hours, setHours] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const coaches = ["Coach 1", "Coach 2", "Coach 3"];
+  const sessions = ["Session 1", "Session 2", "Session 3"];
 
   const handleLog = async () => {
   if (!coachName || !session || !hours) {
-    alert("Please fill all fields");
+    toast.error("Please fill all fields");
     return;
   }
+
+  setLoading(true);
 
   const formData = new FormData();
   formData.append("coach", coachName);
@@ -30,13 +37,15 @@ function App() {
     const data = await res.text(); // Apps Script returns plain text
     console.log(data);
 
-    alert("Hours logged successfully!");
+    toast.success("Hours logged successfully!");
     setCoachName("");
     setSession("");
     setHours("");
   } catch (err) {
     console.error(err);
-    alert("Failed to log hours");
+    toast.error("Failed to log hours");
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -44,6 +53,15 @@ function App() {
   return (
     <>
       <div className='page-container'>
+        <ToastContainer 
+          position="top-center"
+          autoClose={3000}  // 3 seconds
+          newestOnTop={true}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className='title-container'>
           <span>Logging Hours</span>
         </div>
@@ -52,9 +70,11 @@ function App() {
             <p className='input-header'>Coach Name</p>
             <select value={coachName} onChange={(e) => setCoachName(e.target.value)} className='picker'>
               <option value="">Select Coach</option>
-              <option value="Coach 1">Coach 1</option>
-              <option value="Coach 2">Coach 2</option>
-              <option value="Coach 3">Coach 3</option>
+              {coaches.map((coach) => (
+                <option key={coach} value={coach}>
+                  {coach}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -62,9 +82,11 @@ function App() {
             <p className='input-header'>Session</p>
             <select value={session} onChange={(e) => setSession(e.target.value)} className='picker'>
               <option value="">Select Session</option>
-              <option value="Session 1">Session 1</option>
-              <option value="Session 2">Session 2</option>
-              <option value="Session 3">Session 3</option>
+              {sessions.map((session) => (
+                <option key={session} value={session}>
+                  {session}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -74,7 +96,9 @@ function App() {
           </div>
 
           <div className='button-container'>
-            <button className='set-button' onClick={handleLog}>Log Hours</button>
+            <button className='set-button' onClick={handleLog} disabled={loading}>
+              {loading ? 'Loading...' : 'Log Hours'}
+            </button>
           </div>
         </div>
       </div>

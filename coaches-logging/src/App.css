@@ -75,3 +75,7 @@
   background-color: gray;
   cursor: pointer;
 }
+
+.set-button:disabled {
+  background-color: gray;
+}
