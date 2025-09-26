@@ -4,9 +4,12 @@ import "react-toastify/dist/ReactToastify.css";
 import './Logging.css'
 
 function Logging() {
+  const today = new Date().toISOString().split("T")[0];
+
   const [coachName, setCoachName] = useState("");
   const [session, setSession] = useState("");
   const [hours, setHours] = useState("");
+  const [day, setDay] = useState(today);
   const [loading, setLoading] = useState(false);
 
   const coaches = ["Coach 1", "Coach 2", "Coach 3"];
@@ -24,6 +27,7 @@ function Logging() {
   formData.append("coach", coachName);
   formData.append("session", session);
   formData.append("hours", hours);
+  formData.append("day", day);
 
   try {
     const res = await fetch(
@@ -88,6 +92,11 @@ function Logging() {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className='input-row2'>
+            <p className='input-header'>Day Worked</p>
+            <input type='date' value={day} onChange={(e) => setDay(e.target.value)} className='picker' />
           </div>
 
           <div className='input-row2'>

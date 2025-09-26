@@ -14,7 +14,7 @@
 }
 
 .coach-box {
-  height: 400px;
+  height: 450px;
   width: 50%;
   padding: 40px;
   background-color:aliceblue;
@@ -58,7 +58,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;  
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .set-button {
