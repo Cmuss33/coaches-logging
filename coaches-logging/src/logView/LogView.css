@@ -1,0 +1,31 @@
+.filter-picker1 {
+  margin-left: 40px;
+  margin-top: 40px;
+  padding: 5px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  width: 80%;
+  box-sizing: border-box;
+  color: black;
+}
+
+.filter-picker2 {
+  margin-left: 40px;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  width: 80%;
+  box-sizing: border-box;
+  color: black;
+}
+
+.filter-header {
+    padding-left: 25px;
+    padding-right: 25px;
+
+}
