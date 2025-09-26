@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
+import Header from '../header/Header'
 import "react-toastify/dist/ReactToastify.css";
 import './LogView.css';
 
@@ -42,69 +43,72 @@ function LogView() {
   });
 
   return (
-    <div className="page-container">
-      <ToastContainer 
-        position="top-center"
-        autoClose={3000} 
-        newestOnTop={true}
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-
-      <div className="title-container">
-        <span>View Logged Hours</span>
-      </div>
-
-      <div className="filters">
-        <select value={coachFilter} onChange={e => setCoachFilter(e.target.value)} className="filter-picker1">
-          <option value="">All Coaches</option>
-          {coaches.map(c => <option key={c} value={c}>{c}</option>)}
-        </select>
-
-        <select value={sessionFilter} onChange={e => setSessionFilter(e.target.value)} className="filter-picker2">
-          <option value="">All Sessions</option>
-          {sessions.map(s => <option key={s} value={s}>{s}</option>)}
-        </select>
-
-        <input 
-          type="date" 
-          value={dayFilter} 
-          onChange={e => setDayFilter(e.target.value)} 
-          className="filter-picker2"
+    <>
+        <Header />
+        <div className="page-container">
+        <ToastContainer 
+            position="top-center"
+            autoClose={3000} 
+            newestOnTop={true}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
         />
-      </div>
 
-      <table className="log-table">
-        <thead>
-          <tr>
-            <th className='filter-header'>Coach</th>
-            <th className='filter-header'>Session</th>
-            <th className='filter-header'>Hours</th>
-            <th className='filter-header'>Day</th>
-            <th className='filter-header'>Timestamp</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredLogs.length === 0 ? (
+        <div className="title-container">
+            <span>View Logged Hours</span>
+        </div>
+
+        <div className="filters">
+            <select value={coachFilter} onChange={e => setCoachFilter(e.target.value)} className="filter-picker1">
+            <option value="">All Coaches</option>
+            {coaches.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+
+            <select value={sessionFilter} onChange={e => setSessionFilter(e.target.value)} className="filter-picker2">
+            <option value="">All Sessions</option>
+            {sessions.map(s => <option key={s} value={s}>{s}</option>)}
+            </select>
+
+            <input 
+            type="date" 
+            value={dayFilter} 
+            onChange={e => setDayFilter(e.target.value)} 
+            className="filter-picker2"
+            />
+        </div>
+
+        <table className="log-table">
+            <thead>
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>No logs found</td>
+                <th className='filter-header'>Coach</th>
+                <th className='filter-header'>Session</th>
+                <th className='filter-header'>Hours</th>
+                <th className='filter-header'>Day</th>
+                <th className='filter-header'>Timestamp</th>
             </tr>
-          ) : (
-            filteredLogs.map((log, idx) => (
-              <tr key={idx}>
-                <td className='filter-header'>{log.coach}</td>
-                <td className='filter-header'>{log.session}</td>
-                <td className='filter-header'>{log.hours}</td>
-                <td className='filter-header'>{log.day.slice(0, 10)}</td>
-                <td className='filter-header'>{log.timestamp.slice(0, 10)}</td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
+            </thead>
+            <tbody>
+            {filteredLogs.length === 0 ? (
+                <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>No logs found</td>
+                </tr>
+            ) : (
+                filteredLogs.map((log, idx) => (
+                <tr key={idx}>
+                    <td className='filter-header'>{log.coach}</td>
+                    <td className='filter-header'>{log.session}</td>
+                    <td className='filter-header'>{log.hours}</td>
+                    <td className='filter-header'>{log.day.slice(0, 10)}</td>
+                    <td className='filter-header'>{log.timestamp.slice(0, 10)}</td>
+                </tr>
+                ))
+            )}
+            </tbody>
+        </table>
+        </div>
+    </>
   );
 }
 

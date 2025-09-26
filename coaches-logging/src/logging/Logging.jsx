@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ToastContainer, toast } from "react-toastify";
+import Header from '../header/Header'
 import "react-toastify/dist/ReactToastify.css";
 import './Logging.css'
 
@@ -56,6 +57,7 @@ function Logging() {
 
   return (
     <>
+      <Header />
       <div className='page-container'>
         <ToastContainer 
           position="top-center"
