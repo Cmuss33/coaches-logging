@@ -13,8 +13,90 @@ function Logging() {
   const [day, setDay] = useState(today);
   const [loading, setLoading] = useState(false);
 
-  const coaches = ["Coach 1", "Coach 2", "Coach 3"];
-  const sessions = ["Session 1", "Session 2", "Session 3"];
+  const coaches = [
+    "Aiden Huang",
+    "Alexis Li",
+    "Alishba Faisal",
+    "Alyssa Des Laurier",
+    "Andrei Somersan",
+    "Antonio Marin",
+    "Athan Pagiamitzis",
+    "Brandon Butts",
+    "Chloe Tang",
+    "DJ Williams",
+    "Dylan Kuo",
+    "Hannah Ng",
+    "Jayden Shippey",
+    "Joshua Martins",
+    "Lauren Arce",
+    "Luke Gelati",
+    "Madison Durangos",
+    "Mateo Chen",
+    "Matthew Girdler",
+    "Matthew Mallinos",
+    "Mikayeel Akbari",
+    "Nicki Bagherhisal",
+    "Nika Johari Majd",
+    "Noah Hirji",
+    "Rawk Mustafa",
+    "Sara Girdhar",
+    "Tyler Heng", 
+    "Xavier Bala"
+  ]; 
+
+  const sessions = [
+    // Monday
+    "Mondays @ ST. MONICA, ITH - Girls",
+    "Mondays @ William Berczy PS, Girls 3-6",
+    "Mondays @ Bur Oak SS, Boys SD 3-4",
+
+    // Tuesday
+    "Tuesdays @ SFX CES, ITH - JK/SK",
+    "Tuesdays @ SFX CES, ITH - GR 1/2",
+    "Tuesdays @ Cornell Village PS, Boys SD 3-4",
+    "Tuesdays @ Pierre Elliott Trudeau HS, Boys SD 5-6",
+
+    // Wednesday
+    "Wednesdays @ MOUNT JOY, ITH - JK/SK",
+    "Wednesdays @ MOUNT JOY, ITH - GR 1/2",
+    "Wednesdays @ Victoria Square PS, Boys SD 3-4",
+    "Wednesdays @ Victoria Square PS, Boys SD 5-6",
+    "Wednesdays @ Victoria Square PS, Boys SD 7-8",
+    "Wednesdays @ San Lorenzo Ruiz CES, Boys SD 7-8",
+
+    // Thursday
+    "Thursdays @ ST. BRENDAN, ITH - JK/SK",
+    "Thursdays @ ST. BRENDAN, ITH - GR 1/2",
+    "Thursdays @ Markham Pan Am Centre, Girls SD 7-8",
+
+    // Friday
+    "Fridays @ St. Kateri Tekakwitha CES, Boys SD 5-6",
+    "Fridays @ St. Kateri Tekakwitha CES, Boys SD 7-8",
+
+    // Saturday
+    "Saturdays @ Pierre Elliott Trudeau HS, ITH - JK/SK",
+    "Saturdays @ Pierre Elliott Trudeau HS, ITH - GR 1/2",
+    "Saturdays @ Pierre Elliott Trudeau HS, ITH - Girls",
+    "Saturdays @ Pierre Elliott Trudeau HS, Boys Comp 3-4",
+    "Saturdays @ Pierre Elliott Trudeau HS, Boys Comp 5-6",
+    "Saturdays @ Pierre Elliott Trudeau HS, Girls 3-6",
+    "Saturdays @ Pierre Elliott Trudeau HS, Girls Comp 7-8",
+    "Saturdays @ Pierre Elliott Trudeau HS, Girls Comp 9-12",
+    "Saturdays @ St. Katharine Drexel CHS, Boys Comp 7-8",
+    "Saturdays @ St. Katharine Drexel CHS, Boys Comp 9-12",
+
+    // Sunday
+    "Sundays @ St. Augustine CHS, ITH - JK/SK",
+    "Sundays @ St. Augustine CHS, Boys Comp 3-4",
+    "Sundays @ St. Augustine CHS, Boys Comp 5-6",
+    "Sundays @ St. Augustine CHS, Boys Comp 7-8",
+    "Sundays @ St. Augustine CHS, Boys Comp 9-12",
+    "Sundays @ St. Robert CHS, ITH - GR 1/2",
+    "Sundays @ St. Robert CHS, Boys Comp 3-4",
+    "Sundays @ St. Robert CHS, Boys Comp 5-6",
+    "Sundays @ Stouffville District SS, Boys Comp 3-4",
+    "Sundays @ Stouffville District SS, Boys Comp 5-6"
+  ];
 
   const handleLog = async () => {
   if (!coachName || !session || !hours) {
