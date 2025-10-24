@@ -139,7 +139,6 @@ function Logging() {
 
   return (
     <>
-      <Header />
       <div className='page-container'>
         <ToastContainer 
           position="top-center"

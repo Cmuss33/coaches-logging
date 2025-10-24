@@ -8,6 +8,7 @@ function Header() {
         <div className="header-content">
           <Link to="/" className="header-btn">Log Hours</Link>
           <Link to="/view" className="header-btn">View Logs</Link>
+          <Link to="/calendar" className="header-btn">Calendar View</Link>
         </div>
       </div>
     </>
