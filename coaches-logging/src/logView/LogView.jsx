@@ -9,6 +9,7 @@ function LogView() {
   const [coachFilter, setCoachFilter] = useState("");
   const [sessionFilter, setSessionFilter] = useState("");
   const [dayFilter, setDayFilter] = useState("");
+  const [monthFilter, setMonthFilter] = useState("");
 
   // List of coaches and sessions (you can import this from a constants file)
   const coaches = [
@@ -119,12 +120,17 @@ function LogView() {
 
   // Filter logs based on selected filters
   const filteredLogs = logs.filter(log => {
+    const logDate = new Date(log.day);
+    const logMonth = String(logDate.getMonth() + 1).padStart(2, '0');
     return (
       (coachFilter === "" || log.coach === coachFilter) &&
       (sessionFilter === "" || log.session === sessionFilter) &&
-      (dayFilter === "" || log.day === dayFilter)
+      (dayFilter === "" || log.day === dayFilter) &&
+      (monthFilter === "" || logMonth === monthFilter)
     );
   });
+
+  const totalHours = filteredLogs.reduce((sum, log) => sum + parseFloat(log.hours), 0);
 
   return (
     <>
@@ -160,6 +166,26 @@ function LogView() {
             onChange={e => setDayFilter(e.target.value)} 
             className="filter-picker2"
             />
+
+            <select 
+            value={monthFilter} 
+            onChange={e => setMonthFilter(e.target.value)} 
+            className="filter-picker2"
+            >
+            <option value="">All Months</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+            </select>
         </div>
 
         <table className="log-table">
@@ -190,6 +216,11 @@ function LogView() {
             )}
             </tbody>
         </table>
+        {filteredLogs.length > 0 && (
+          <div className="total-hours">
+            Total Hours: {totalHours.toFixed(2)}
+          </div>
+        )}
         </div>
     </>
   );
