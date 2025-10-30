@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './CalendarView.css';
+import Modal from './Modal'; // Assuming we'll create a Modal component
 
 const localizer = momentLocalizer(moment);
 
@@ -10,7 +11,8 @@ const CalendarView = () => {
   const [events, setEvents] = useState([]);
   const [date, setDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [selectedDateEvents, setSelectedDateEvents] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const webAppUrl = "https://script.google.com/macros/s/AKfycbxcYrxEpPmQiz_U2Fvthkf582kdv6LazTQN0pVp9PuVmEjl53uoEGW9_Ent1zsZhDEjcA/exec";
 
   useEffect(() => {
@@ -62,23 +64,24 @@ return (
         views={['month', 'week', 'agenda']}
         defaultView='month'
         onSelectEvent={handleSelectEvent}
+        onDrillDown={(date) => {
+          const eventsOnDate = events.filter(event => moment(event.start).isSame(date, 'day'));
+          setSelectedDate(date);
+          setIsModalOpen(true);
+        }}
       />
+      {isModalOpen && (
+        <Modal
+          date={selectedDate}
+          events={events.filter(event => moment(event.start).isSame(selectedDate, 'day'))}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
       {selectedEvent && (
         <div className="popup">
           <h2>{selectedEvent.title}</h2>
           <p>Hours: {selectedEvent.hours}</p>
           <button onClick={() => setSelectedEvent(null)}>Close</button>
-        </div>
-      )}
-      {selectedDateEvents.length > 0 && (
-        <div className="popup">
-          <h2>Events on {moment(selectedDateEvents[0].start).format('MMMM D, YYYY')}</h2>
-          <ul>
-            {selectedDateEvents.map((event, index) => (
-              <li key={index}>{event.title} - {event.hours} hours</li>
-            ))}
-          </ul>
-          <button onClick={() => setSelectedDateEvents([])}>Close</button>
         </div>
       )}
     </div>
