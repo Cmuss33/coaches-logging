@@ -120,16 +120,16 @@ function LogView() {
   };
 
   // Filter logs based on selected filters
-  const filteredLogs = logs.filter(log => {
-    const logDate = new Date(log.day);
-    const logMonth = String(logDate.getMonth() + 1).padStart(2, '0');
-    return (
-      (coachFilter === "" || log.coach === coachFilter) &&
-      (sessionFilter === "" || log.session === sessionFilter) &&
-      (dayFilter === "" || log.day === dayFilter) &&
-      (monthFilter === "" || logMonth === monthFilter)
-    );
-  });
+const filteredLogs = logs.filter(log => {
+  const logDate = new Date(log.day);
+  const formattedLogDate = logDate.toISOString().slice(0, 10); // Format: yyyy-mm-dd
+  return (
+    (coachFilter === "" || log.coach === coachFilter) &&
+    (sessionFilter === "" || log.session === sessionFilter) &&
+    (dayFilter === "" || formattedLogDate === dayFilter) &&
+    (monthFilter === "" || formattedLogDate.slice(5, 7) === monthFilter)
+  );
+});
 
   const totalHours = filteredLogs.reduce((sum, log) => sum + parseFloat(log.hours), 0);
 

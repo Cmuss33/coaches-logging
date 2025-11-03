@@ -19,6 +19,8 @@
   max-width: 500px;
   width: 100%;
   color: black;
+  overflow-y: auto;
+  max-height: 80%;
 }
 
 .modal-content h2 {
