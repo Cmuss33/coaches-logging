@@ -29,3 +29,14 @@
     padding-right: 25px;
 
 }
+
+.log-table {
+  margin-top: 30px;
+}
+
+.total-hours {
+  color: red;
+  margin-top: 10px;
+  font-size: medium;
+  font-weight: bold;
+}

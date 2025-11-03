@@ -26,6 +26,7 @@ function Logging() {
     "DJ Williams",
     "Dylan Kuo",
     "Hannah Ng",
+    "Jaxon Mangbuat",
     "Jayden Shippey",
     "Joshua Martins",
     "Lauren Arce",
@@ -59,8 +60,7 @@ function Logging() {
     // Wednesday
     "Wednesdays @ MOUNT JOY, ITH - JK/SK",
     "Wednesdays @ MOUNT JOY, ITH - GR 1/2",
-    "Wednesdays @ Victoria Square PS, Boys SD 3-4",
-    "Wednesdays @ Victoria Square PS, Boys SD 5-6",
+    "Wednesdays @ Victoria Square PS, Boys SD 3-6",
     "Wednesdays @ Victoria Square PS, Boys SD 7-8",
     "Wednesdays @ San Lorenzo Ruiz CES, Boys SD 7-8",
 
@@ -94,6 +94,7 @@ function Logging() {
     "Sundays @ St. Robert CHS, ITH - GR 1/2",
     "Sundays @ St. Robert CHS, Boys Comp 3-4",
     "Sundays @ St. Robert CHS, Boys Comp 5-6",
+    "Sundays @ St. Robert CHS, Girls 3-6",
     "Sundays @ Stouffville District SS, Boys Comp 3-4",
     "Sundays @ Stouffville District SS, Boys Comp 5-6"
   ];
@@ -126,7 +127,6 @@ function Logging() {
 
     toast.success("Hours logged successfully!");
     setCoachName("");
-    setSession("");
     setHours("");
   } catch (err) {
     console.error(err);
