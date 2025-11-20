@@ -27,6 +27,7 @@ function LogView() {
     "Hannah Ng",
     "Jaxon Mangbuat",
     "Jayden Shippey",
+    "Jayden Wu",
     "Joshua Martins",
     "Lauren Arce",
     "Luke Gelati",
@@ -90,12 +91,12 @@ function LogView() {
     "Sundays @ St. Augustine CHS, Boys Comp 5-6",
     "Sundays @ St. Augustine CHS, Boys Comp 7-8",
     "Sundays @ St. Augustine CHS, Boys Comp 9-12",
+    "Sundays @ Stouffville District SS, Boys Comp 3-4",
+    "Sundays @ Stouffville District SS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, ITH - GR 1/2",
     "Sundays @ St. Robert CHS, Boys Comp 3-4",
     "Sundays @ St. Robert CHS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, Girls 3-6",
-    "Sundays @ Stouffville District SS, Boys Comp 3-4",
-    "Sundays @ Stouffville District SS, Boys Comp 5-6"
   ];
   
 

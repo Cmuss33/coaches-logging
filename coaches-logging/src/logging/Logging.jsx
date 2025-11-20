@@ -28,6 +28,7 @@ function Logging() {
     "Hannah Ng",
     "Jaxon Mangbuat",
     "Jayden Shippey",
+    "Jayden Wu",
     "Joshua Martins",
     "Lauren Arce",
     "Luke Gelati",
@@ -47,9 +48,9 @@ function Logging() {
 
   const sessions = [
     // Monday
-    "Mondays @ ST. MONICA, ITH - Girls",
     "Mondays @ William Berczy PS, Girls 3-6",
     "Mondays @ Bur Oak SS, Boys SD 3-4",
+    "Mondays @ ST. MONICA, ITH - Girls",
 
     // Tuesday
     "Tuesdays @ SFX CES, ITH - JK/SK",
@@ -58,11 +59,11 @@ function Logging() {
     "Tuesdays @ Pierre Elliott Trudeau HS, Boys SD 5-6",
 
     // Wednesday
-    "Wednesdays @ MOUNT JOY, ITH - JK/SK",
-    "Wednesdays @ MOUNT JOY, ITH - GR 1/2",
     "Wednesdays @ Victoria Square PS, Boys SD 3-6",
     "Wednesdays @ Victoria Square PS, Boys SD 7-8",
     "Wednesdays @ San Lorenzo Ruiz CES, Boys SD 7-8",
+    "Wednesdays @ MOUNT JOY, ITH - JK/SK",
+    "Wednesdays @ MOUNT JOY, ITH - GR 1/2",
 
     // Thursday
     "Thursdays @ ST. BRENDAN, ITH - JK/SK",
@@ -91,12 +92,12 @@ function Logging() {
     "Sundays @ St. Augustine CHS, Boys Comp 5-6",
     "Sundays @ St. Augustine CHS, Boys Comp 7-8",
     "Sundays @ St. Augustine CHS, Boys Comp 9-12",
+    "Sundays @ Stouffville District SS, Boys Comp 3-4",
+    "Sundays @ Stouffville District SS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, ITH - GR 1/2",
     "Sundays @ St. Robert CHS, Boys Comp 3-4",
     "Sundays @ St. Robert CHS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, Girls 3-6",
-    "Sundays @ Stouffville District SS, Boys Comp 3-4",
-    "Sundays @ Stouffville District SS, Boys Comp 5-6"
   ];
 
   const handleLog = async () => {
