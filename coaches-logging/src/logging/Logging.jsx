@@ -19,6 +19,7 @@ function Logging() {
     "Alishba Faisal",
     "Alyssa Des Laurier",
     "Andrei Somersan",
+    "Anjali Girdhar",
     "Antonio Marin",
     "Athan Pagiamitzis",
     "Brandon Butts",
@@ -37,9 +38,9 @@ function Logging() {
     "Matthew Girdler",
     "Matthew Mallinos",
     "Mikayeel Akbari",
-    "Nicki Bagherhisal",
     "Nika Johari Majd",
     "Noah Hirji",
+    "Paityn Wang",
     "Rawk Mustafa",
     "Sara Girdhar",
     "Tyler Heng", 
@@ -98,6 +99,8 @@ function Logging() {
     "Sundays @ St. Robert CHS, Boys Comp 3-4",
     "Sundays @ St. Robert CHS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, Girls 3-6",
+    
+    "OTHER",
   ];
 
   const handleLog = async () => {
