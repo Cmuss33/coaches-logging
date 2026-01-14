@@ -14,6 +14,7 @@ function Logging() {
   const [loading, setLoading] = useState(false);
 
   const coaches = [
+    "Aidan Wong",
     "Aiden Huang",
     "Alexis Li",
     "Alishba Faisal",
@@ -43,6 +44,7 @@ function Logging() {
     "Paityn Wang",
     "Rawk Mustafa",
     "Sara Girdhar",
+    "Theodore Oey",
     "Tyler Heng", 
     "Xavier Bala"
   ]; 
@@ -93,6 +95,7 @@ function Logging() {
     "Sundays @ St. Augustine CHS, Boys Comp 5-6",
     "Sundays @ St. Augustine CHS, Boys Comp 7-8",
     "Sundays @ St. Augustine CHS, Boys Comp 9-12",
+    "Sundays @ Stouffville District SS, ITH Girls",
     "Sundays @ Stouffville District SS, Boys Comp 3-4",
     "Sundays @ Stouffville District SS, Boys Comp 5-6",
     "Sundays @ St. Robert CHS, ITH - GR 1/2",
