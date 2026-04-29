@@ -132,9 +132,11 @@ function Logging() {
     const data = await res.text(); // Apps Script returns plain text
     console.log(data);
 
-    toast.success("Hours logged successfully!");
+    toast.dismiss();
+    toast.success(`${coachName} ${session} hours logged successfully!`, {
+      autoClose: false,
+    });
     setCoachName("");
-    setHours("");
   } catch (err) {
     console.error(err);
     toast.error("Failed to log hours");

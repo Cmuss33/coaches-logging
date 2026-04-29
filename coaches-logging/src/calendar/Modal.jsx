@@ -7,7 +7,9 @@ const Modal = ({ date, events, onClose }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <h2>Events on {date.toLocaleDateString()}</h2>
         <ul>
-          {events.map((event, index) => (
+          {events
+            .sort((a, b) => a.title.localeCompare(b.title))
+            .map((event, index) => (
             <li key={index}>{event.title} - {event.hours} hours</li>
           ))}
         </ul>
