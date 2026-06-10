@@ -5,7 +5,6 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
 
   display: flex;
   justify-content: center;
@@ -74,10 +73,6 @@
 .session-card:hover {
   background: #e0f2fe;
   border-color: #60a5fa;
-}
-
-.session-card:active {
-  transform: scale(0.98);
 }
 
 /* =========================
@@ -207,4 +202,20 @@
   color: #6b7280;
   font-size: 14px;
   padding: 20px 0;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

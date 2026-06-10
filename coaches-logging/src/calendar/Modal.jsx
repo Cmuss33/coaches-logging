@@ -10,7 +10,7 @@ const Modal = ({ date, events, onClose }) => {
           {events
             .sort((a, b) => a.title.localeCompare(b.title))
             .map((event, index) => (
-            <li key={index}>{event.title} - {event.hours} hours</li>
+            <li key={index}>{event.title} <br />{event.hours} hours</li>
           ))}
         </ul>
         <button onClick={onClose}>Close</button>

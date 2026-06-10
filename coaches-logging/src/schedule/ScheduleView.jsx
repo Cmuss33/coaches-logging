@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { ToastContainer, toast } from "react-toastify";
 import "./ScheduleView.css";
 
 const localizer = momentLocalizer(moment);
@@ -13,6 +14,7 @@ const coaches = [
   "Aidan Wong",
   "Aiden Huang",
   "Alexis Li",
+  "Ali Omar",
   "Alishba Faisal",
   "Alyssa Des Laurier",
   "Andrei Somersan",
@@ -28,6 +30,7 @@ const coaches = [
   "Jayden Shippey",
   "Jayden Wu",
   "Joshua Martins",
+  "Joshua Sales",
   "Lauren Arce",
   "Luke Gelati",
   "Madison Durangos",
@@ -189,8 +192,8 @@ const sessionDefaults = {
   },
   "Mondays @ William Berczy PS, Girls 3-6": {
     coaches: [
-      "Madison Durangos",
       "Alyssa Des Laurier",
+      "Madison Durangos",
       "Chloe Tang",
       "Paityn Wang"
     ],
@@ -220,8 +223,8 @@ const sessionDefaults = {
   },
   "Tuesdays @ Cornell Village PS, Boys SD 3-4": {
     coaches: [
+      "Alishba Faisal",
       "Matthew Mallinos",
-      "Alishba Faisal"
     ],
     hours: 1.5
   },
@@ -282,8 +285,8 @@ const sessionDefaults = {
   },
   "Fridays @ St. Kateri Tekakwitha CES, Boys SD 5-6": {
     coaches: [
-      "Aidan Wong",
       "Brandon Butts",
+      "Aidan Wong",
       "Mateo Chen"
     ],
     hours: 1.5
@@ -336,16 +339,16 @@ const sessionDefaults = {
       "Jayden Shippey",
       "Alishba Faisal",
       "Lauren Arce",
-      "Alexis Li",
+      "Alexis Li"
     ],
     hours: 1.5
   },
   "Saturdays @ Pierre Elliott Trudeau HS, Girls Comp 7-8": {
-    coaches: ["Alishba Faisal", "Hannah Ng", "Alexis Li",],
+    coaches: ["Alishba Faisal", "Hannah Ng",],
     hours: 2
   },
   "Saturdays @ Pierre Elliott Trudeau HS, Girls Comp 9-12": {
-    coaches: ["Alishba Faisal", "Hannah Ng", "Alexis Li",],
+    coaches: ["Alishba Faisal", "Hannah Ng",],
     hours: 2
   },
   "Saturdays @ St. Katharine Drexel CHS, Boys Comp 7-8": {
@@ -399,6 +402,8 @@ const ScheduleView = () => {
 
   const [isDayModalOpen, setIsDayModalOpen] = useState(false);
   const [isSessionModalOpen, setIsSessionModalOpen] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchLogs = async () => {
     const res = await fetch(webAppUrl);
@@ -481,6 +486,7 @@ const ScheduleView = () => {
   };
 
   const handleSubmitAll = async () => {
+    setIsSubmitting(true);
     for (const log of sessionLogs) {
       if (!log.coach || !log.hours) continue;
 
@@ -493,19 +499,63 @@ const ScheduleView = () => {
         moment(selectedDate).format("YYYY-MM-DD")
       );
 
-      await fetch(webAppUrl, {
-        method: "POST",
-        body: formData,
-      });
+      try {
+        const res = await fetch(
+          webAppUrl,
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        const data = await res.text(); // Apps Script returns plain text
+        console.log(data);
+
+        toast.success(`${log.coach} ${selectedSession} hours logged successfully!`, {
+        });
+      } catch (err) {
+        console.error(err);
+        toast.error(`ERROR: ${log.coach} ${selectedSession}`, {
+          autoClose:false,
+        });
+      }
     }
 
-    alert("Logged successfully!");
+    setIsSubmitting(false);
     setIsSessionModalOpen(false);
     fetchLogs();
   };
 
+  const eventStyleGetter = (event) => {
+    const isLogged = logs.some(
+      (log) =>
+        log.session === event.title &&
+        moment(log.day).isSame(event.start, "day")
+    );
+
+    return {
+      style: {
+        backgroundColor: isLogged ? "#28a745" : "#3174ad", // green or default blue
+        color: "white",
+        borderRadius: "6px",
+        border: "none",
+        display: "block",
+        fontSize: "11px",
+      },
+    };
+  };
+
   return (
     <div style={{ height: "100vh", marginTop: "75px", padding: "10px" }}>
+      <ToastContainer 
+          position="top-center"
+          autoClose={3000}  // 3 seconds
+          newestOnTop={true}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       <Calendar
         localizer={localizer}
         events={calendarEvents}
@@ -517,6 +567,9 @@ const ScheduleView = () => {
         views={["month", "week", "agenda"]}
         defaultView="month"
         onSelectSlot={handleSelectSlot}
+        onSelectEvent={handleSelectSlot}
+        eventPropGetter={eventStyleGetter}
+        showAllEvents
         style={{ height: "90%", marginTop: "20px", color: "black" }}
       />
 
@@ -593,8 +646,12 @@ const ScheduleView = () => {
             </button>
 
             <div className="modal-actions">
-              <button className="btn primary" onClick={handleSubmitAll}>
-                Log All
+              <button
+                className="btn primary"
+                onClick={handleSubmitAll}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? <span className="spinner" /> : "Log All"}
               </button>
               <button
                 className="btn ghost"
